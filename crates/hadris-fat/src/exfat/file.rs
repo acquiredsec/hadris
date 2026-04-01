@@ -278,7 +278,7 @@ impl<'a, DATA: Read + Write + Seek> ExFatFileWriter<'a, DATA> {
         self.fs.update_entry_size(
             &self.entry,
             self.new_length,
-            self.allocated_length,
+            self.new_length, // data_length = actual bytes, not allocation
             self.first_cluster,
         )?;
         self.fs.sync_bitmap()?;
